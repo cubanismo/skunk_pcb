@@ -3,7 +3,7 @@
 version: 1.355
 file_version: 1.344
 project_name: "jagwave"
-full_library_folder: "c:\jag\freepcb\projects\lib"
+full_library_folder: "Z:\home\jjones\skunkboard\pcb\lib"
 CAM_folder: "C:\Documents and Settings\tursi\Desktop\jag\pcb\revision3"
 ses_file_path: ""
 netlist_file_path: "C:\Users\boxee\Desktop\jag\pcb\netrev3.txt"
@@ -172,11 +172,11 @@ drc_board_edge_hole: 584200
 drc_hole_hole: 635000
 drc_copper_copper: 254000
 
-default_trace_width: 200000
+default_trace_width: 177800
 default_via_pad_width: 965200
 default_via_hole_width: 508000
 n_width_menu: 1
-  width_menu_item: 1 200000 965200 508000
+  width_menu_item: 1 177800 965200 508000
 
 n_copper_layers: 4
   layer_info: "selection" 0 255 255 255 1
@@ -918,6 +918,54 @@ source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 O
     pin: "1" 0 0 0 0
       top_pad: 1 1200000 550000 550000 0
 
+name: "XSON8"
+  units: NM
+  sel_rect: -1681000 -1354000 1681000 1354000
+  ref_text: 1270000 -1700000 1700000 0 127000
+  value_text: 1270000 1900000 -500000 0 127000
+  centroid: 0 0 0 0
+  outline_polyline: 254000 -1100000 600000
+    next_corner: -1300000 600000 0
+    next_corner: -1300000 -500000 0
+    next_corner: -1100000 -700000 0
+  outline_polyline: 254000 1100000 600000
+    next_corner: 1300000 600000 0
+    next_corner: 1300000 -700000 0
+    next_corner: 1100000 -700000 0
+  n_pins: 8
+    pin: "8" 0 -750000 625000 0
+      top_pad: 3 950000 150000 150000 0
+      top_mask: 3 950000 150000 150000 0
+      top_paste: 3 900000 125000 125000 0
+    pin: "7" 0 -250000 625000 0
+      top_pad: 3 950000 150000 150000 0
+      top_mask: 3 950000 150000 150000 0
+      top_paste: 3 900000 125000 125000 0
+    pin: "6" 0 250000 625000 0
+      top_pad: 3 950000 150000 150000 0
+      top_mask: 3 950000 150000 150000 0
+      top_paste: 3 900000 125000 125000 0
+    pin: "5" 0 750000 625000 0
+      top_pad: 3 950000 150000 150000 0
+      top_mask: 3 950000 150000 150000 0
+      top_paste: 3 900000 125000 125000 0
+    pin: "1" 0 -750000 -600000 0
+      top_pad: 3 1000000 150000 150000 0
+      top_mask: 3 1000000 150000 150000 0
+      top_paste: 3 950000 125000 125000 0
+    pin: "2" 0 -250000 -625000 0
+      top_pad: 3 950000 150000 150000 0
+      top_mask: 3 950000 150000 150000 0
+      top_paste: 3 900000 125000 125000 0
+    pin: "3" 0 250000 -625000 0
+      top_pad: 3 950000 150000 150000 0
+      top_mask: 3 950000 150000 150000 0
+      top_paste: 3 900000 125000 125000 0
+    pin: "4" 0 750000 -625000 0
+      top_pad: 3 950000 150000 150000 0
+      top_mask: 3 950000 150000 150000 0
+      top_paste: 3 900000 125000 125000 0
+
 name: "F55CAP"
 author: "Nathan Monson"
 source: "Nippon Alchip Datasheet"
@@ -1501,6 +1549,12 @@ part: U6
   package: ""
   shape: "S08"
   pos: 82900000 19900000 0 0 0
+
+part: U7
+  ref_text: 1270000 127000 270 -2000000 -1000000 1
+  package: ""
+  shape: "XSON8"
+  pos: 83700000 29200000 0 90 0
 
 [nets]
 

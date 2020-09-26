@@ -1,0 +1,50 @@
+-Use GPIO25 and GPIO28 to drive EEPROM chip select line.
+ -Need to AND with CS from Jaguar, so add a tiny 2xAND IC as well.
+ -Used XSON8 package 2 channel/2 input AND gate IC, largely because it was all
+  that would fit in the remaining available area.  Going to be a pain to
+  solder though!
+
+-Need to reproduce Rev. 4 modifications almost entirely
+ -Only difference is move U5 down, maybe move vias it uses to make space for
+  U6 and U7
+ -Extend GND/VCC planes over to right edge of board.
+ -Raise GND/VCC planes up away from bottom of larger portion of edge
+  connector to make room for the four Serial EEPROM control signal traces,
+  which will route through the inner two layers that are usually reserved for
+  GND/VCC.
+ -<XXX detail which pins are routed where here>
+ -Move version info silkscreen over to left edge of board, thank Tursi.
+-Don't put traces too close to USB traces: See notes in
+ pcb3/pcb/usbhub-layout.pdf for details.  These traces prefer privacy.
+
+-See butcher/butcher.txt for details on the weird GPIO routing on EZHost and
+ how it allows proper booting.
+
+-Layout modification tasks:
+
+  -Flip C1 horizontally
+
+  -Reroute nearby JTAG traces to make space for vias near
+   GPIO25 and GPIO28
+
+  -Reroute one of the XTAL/clock traces under the PCB to free up space for
+   vias back to the front of the board under the USB 2 connector
+   * Risky, moves clock very close to R1 trace, and JTAG trace a little
+     closer to sensitive USB D+/D- vias.
+
+  -Move X1 down to make more space for GPIO traces to pass through near
+   cartridge mount hole under USB 2/J3
+
+-TODO:
+ -Silkscreen:
+  -Add bottom silk layer with the skunk logo and JTAG labels
+  -Move version info to left side of board
+  -Update copyright year to 2020, indicate public domain
+  -Add a thank you to Tursi
+ -Enlarge Mini USB mounting pads to make them more secure
+
+-Prototype on Rev. 4 PCB:
+ -Green  = GPIO25, Cypress
+ -Yellow = GPIO28, Cypress
+ -White  = SF_CS, Jaguar
+ -Blue   = CS, 93C46

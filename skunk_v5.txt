@@ -16,7 +16,8 @@
   inner layer 2 over to right side of board for Serial EEPROM chip select,
   clock, and data in+out lines.
  -Enlarged Mini USB mounting pads to make them more secure
- -Moved version info silkscreen over to left edge of board, thanked Tursi.
+ -Moved version info silkscreen over to left edge of board, updated to
+  Rev. 5, thanked Tursi.
 
 -Additional layout modifications:
   -Flipped C1 horizontally to make room for vias to route GPIO lines on back
@@ -45,15 +46,12 @@
 
 -TODO:
  -Silkscreen:
-  -Top:
-   -Move version info to left side of board, update to Rev. 5
-   -Update copyright year to 2020, indicate public domain
-   -Add a thank you to Tursi
   -Bottom
    -Difficult, in that it isn't done in FreePCB, since it does not support
     importing/drawing real graphics. The previous manufacturing releases
     appear to have used an autocad file converted directly to gerber format.
-   -Want to add a few things to the existing one that prevent direct re-use:
+   -Want to add a few things to the existing one, so I can't directly re-use
+    the Rev. 3 files:
     -Add a "CE (collectors edition)" to the logo somewhere.
     -Add the JTAG pin labels from Rev. 4 (were very helpful)
     -Potentially label Jaguar connector pin numbers like on front of Rev. 4.

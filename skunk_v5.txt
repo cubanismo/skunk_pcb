@@ -1,12 +1,13 @@
--Use GPIO25 and GPIO28 to drive EEPROM chip select line.
+-Use Cypress EZHost GPIO25 and GPIO28 to drive EEPROM chip select line.
  -Need to AND with CS from Jaguar, so add a tiny 2xAND IC as well.
  -Used XSON8 package 2 channel/2 input AND gate IC, largely because it was all
   that would fit in the remaining available area.  Going to be a pain to
   solder though!
 
 -Needed to reproduce some Rev. 4 modifications:
- -Extend GND/VCC planes over to right edge of board, but carved out some room
-  for extra vias to inner layers
+ -Extend GND/VCC planes over to right edge of board including even more area
+  than Rev. 4, but with some room carved out for the vias to the inner
+  layers.
  -Raise GND/VCC planes up away from bottom of larger portion of edge
   connector to make room for the four Serial EEPROM control signal traces,
   which will route through the inner two layers that are usually reserved for
@@ -14,6 +15,7 @@
  -Routed J0.B40, J0.B42, and J0.B43 through inner layer 1, and J0.A43 through
   inner layer 2 over to right side of board for Serial EEPROM chip select,
   clock, and data in+out lines.
+ -Enlarged Mini USB mounting pads to make them more secure
  -Moved version info silkscreen over to left edge of board, thanked Tursi.
 
 -Additional layout modifications:
@@ -56,13 +58,14 @@
     -Add the JTAG pin labels from Rev. 4 (were very helpful)
     -Potentially label Jaguar connector pin numbers like on front of Rev. 4.
     -Add public-domain 2020 copyright line
- -Enlarge Mini USB mounting pads to make them more secure
  -Triple-check Serial EEPROM pin->Jaguar pin mapping
  -Triple-check EZHost GPIO routing.
  
 -Prototype on Rev. 4 PCB:
- -Green  = GPIO25, Cypress
- -Yellow = GPIO28, Cypress
- -White  = SF_CS, Jaguar
- -Blue   = CS, 93C46
- -
+ -Green ========= Cypress EZHost pin 45, GPIO25, 74LVC2G08 pin 1, 1A
+ -Yellow ======== Cypress EZHost pin 42, GPIO28, 74LVC2G08 pin 5, 2A
+ -White ========= Jaguar pin B43, GPIO1/SF_CS, 74LVC2G08 pins 2/6, 1B/2B
+ -Blue ========== 93Cx6(U5) pin 1, CS, 74LVC2G08 pin 7, 1Y
+ -Black ========= 93Cx6(U5/U6) pin 2, SK, Jaguar pin B42, GPIO0
+ -Red =========== 93Cx6(U5/U6) pin 3, DI, Jaguar pin A23, ED0
+ -Yellow/Orange = 93Cx6(U5/U6) pin 4, DO, Jaguar pin B40, E2DATA

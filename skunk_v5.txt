@@ -58,6 +58,44 @@
     -Add public-domain 2020 copyright line
  -Triple-check Serial EEPROM pin->Jaguar pin mapping
  -Triple-check EZHost GPIO routing.
+
+-Soldermask minimum web (clearance between pads to allow mask between them):
+ -The minimum pad spacing on the board is 0.2mm (~7.874mil). If the minimum
+  web is less than that, we can't get any mask between the smaller pads,
+  which would make hand-soldering more difficult.
+  -Osh Park claims minimum soldermask web is 0.102mm (4mil)
+  -PCBWay claims minimum soldermask web (bridge) for advanced PCBs is 0.102mm
+   (4mil) for "black" soldermask, which I'm assuming means all non-green.
+  -JLCPCB claims minimum soldermask web is 0.254mm (10mil) for non-green
+   masks, 0.2mm for green. This seems high, but they also appear to include
+   expansion in their web/bridge min, whereas other places don't. If you
+   calculate it out, an expansion of 3mil * 2 + 4mil minimum web, you get
+   10mil, or 0.254mm, so that must be what they're capable of in practice,
+   even though they claim 0.05mm/2mil expansion.
+  
+-Soldermask expansion ("Swell pads for soldermask" in FreePCB CAM dialog):
+ -The project had this set to 7.874mil (~0.2mm), which seems huge. Perhaps
+  this was just to avoid attempting tiny bridges between the 0.2mm-spaced
+  pads. Assuming that was the case, I set it to 6mils for now, which still
+  easily wipes out the mask around the QFN/MSOP/TSOP/XSON8 parts, and just
+  covers the 0.3mm space between the USB mini connector pads as well.
+ -allpcb claims the industry standard is ~4mil (~0.102mm) to account for
+  growth, retraction and shift.
+ -Osh Park claims a maximum of 3mil (0.077mm)
+ -PCBWay doesn't list a number here, but a blog from 2014 says, for SMD pads,
+  0.05mm (~2mil) is good, 0.075mm (~3mil) is better. The same blog claims a
+  minimum web of 0.15mm (~6mil): 0.05 * 2 + 0.15mm = 0.25mm pad spacing.
+ -JLCPCB claims 0.05mm (~2mil) is acceptable, but see above. 3mil is probably
+  more realistic.
+
+-Soldermask conclusions:
+ -What this comes down to is we can't quite get soldermask between the 0.2mm-
+  spaced pads and stay within specs for non-green boards. Hrmph. The smart
+  thing to do would probably be to just order green boards.  Oshpark only
+  supports the purple ones though, so I guess we can just get some prototypes
+  made without solder bridge between the fine-pitch parts and see how it
+  goes soldering them. I can't tell for sure whether the Rev. 4 boards had
+  mask betwen the pins as I've burnt mine up pretty bad.
  
 -Prototype on Rev. 4 PCB:
  -Green ========= Cypress EZHost pin 45, GPIO25, 74LVC2G08 pin 1, 1A

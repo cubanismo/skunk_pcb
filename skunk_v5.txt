@@ -4,47 +4,65 @@
   that would fit in the remaining available area.  Going to be a pain to
   solder though!
 
--Need to reproduce Rev. 4 modifications almost entirely
- -Only difference is move U5 down, maybe move vias it uses to make space for
-  U6 and U7
- -Extend GND/VCC planes over to right edge of board.
+-Needed to reproduce some Rev. 4 modifications:
+ -Extend GND/VCC planes over to right edge of board, but carved out some room
+  for extra vias to inner layers
  -Raise GND/VCC planes up away from bottom of larger portion of edge
   connector to make room for the four Serial EEPROM control signal traces,
   which will route through the inner two layers that are usually reserved for
   GND/VCC.
- -<XXX detail which pins are routed where here>
- -Move version info silkscreen over to left edge of board, thank Tursi.
+ -Routed J0.B40, J0.B42, and J0.B43 through inner layer 1, and J0.A43 through
+  inner layer 2 over to right side of board for Serial EEPROM chip select,
+  clock, and data in+out lines.
+ -Moved version info silkscreen over to left edge of board, thanked Tursi.
+
+-Additional layout modifications:
+  -Flipped C1 horizontally to make room for vias to route GPIO lines on back
+   of board to get around C1 and JTAG traces
+  -Rerouted nearby JTAG traces to make space for vias near
+   GPIO25 and GPIO28
+  -Move X1 down to make more space for GPIO traces to pass through near
+   cartridge mount hole under USB 2/J3
+  -Rerouted one of the XTAL/clock traces under U1/EZHost to free up space for
+   vias back to the front of the board under the J2/USB 2 connector
+   * Risky, moves clock very close to R1 trace, and JTAG trace a little
+     closer to sensitive USB D+/D- vias.
+  -Added U5, and U6, pads for 93C46/93C66/93C86 Serial EEPROM save-game
+   chips. Unlike Rev. 4, connect pins 6 and 7 to VCC to ensure 16-bit
+   organization is selected and write-protection is disabled if using the
+   variants of these chips that support such features. on other variants,
+   these pins are not connected, so there will be no change in behavior.
+  -Added U7, pads for a tiny XSON8 dual AND gate IC which will assist the
+   GPIO lines in selecting between the two Serial EEPROM save-game chips.
+
 -Don't put traces too close to USB traces: See notes in
  pcb3/pcb/usbhub-layout.pdf for details.  These traces prefer privacy.
 
 -See butcher/butcher.txt for details on the weird GPIO routing on EZHost and
  how it allows proper booting.
 
--Layout modification tasks:
-
-  -Flip C1 horizontally
-
-  -Reroute nearby JTAG traces to make space for vias near
-   GPIO25 and GPIO28
-
-  -Reroute one of the XTAL/clock traces under the PCB to free up space for
-   vias back to the front of the board under the USB 2 connector
-   * Risky, moves clock very close to R1 trace, and JTAG trace a little
-     closer to sensitive USB D+/D- vias.
-
-  -Move X1 down to make more space for GPIO traces to pass through near
-   cartridge mount hole under USB 2/J3
-
 -TODO:
  -Silkscreen:
-  -Add bottom silk layer with the skunk logo and JTAG labels
-  -Move version info to left side of board
-  -Update copyright year to 2020, indicate public domain
-  -Add a thank you to Tursi
+  -Top:
+   -Move version info to left side of board, update to Rev. 5
+   -Update copyright year to 2020, indicate public domain
+   -Add a thank you to Tursi
+  -Bottom
+   -Difficult, in that it isn't done in FreePCB, since it does not support
+    importing/drawing real graphics. The previous manufacturing releases
+    appear to have used an autocad file converted directly to gerber format.
+   -Want to add a few things to the existing one that prevent direct re-use:
+    -Add a "CE (collectors edition)" to the logo somewhere.
+    -Add the JTAG pin labels from Rev. 4 (were very helpful)
+    -Potentially label Jaguar connector pin numbers like on front of Rev. 4.
+    -Add public-domain 2020 copyright line
  -Enlarge Mini USB mounting pads to make them more secure
-
+ -Triple-check Serial EEPROM pin->Jaguar pin mapping
+ -Triple-check EZHost GPIO routing.
+ 
 -Prototype on Rev. 4 PCB:
  -Green  = GPIO25, Cypress
  -Yellow = GPIO28, Cypress
  -White  = SF_CS, Jaguar
  -Blue   = CS, 93C46
+ -

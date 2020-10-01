@@ -96,8 +96,72 @@
   made without solder bridge between the fine-pitch parts and see how it
   goes soldering them. I can't tell for sure whether the Rev. 4 boards had
   mask betwen the pins as I've burnt mine up pretty bad.
+
+-Back silkscreen workflow:
+ -Original board back silk screen appears to have been manually generated
+  from a PDF->DFX->gerber conversion process, using an evaluation copy of
+   Fab It! 2008 Version 3.4.8 from Numerical Innovations. I preferred to
+   use freely available tools if possible, so I used an alternate method.
+ -I took the following steps to generate the back silkscreen:
+  -Opened the z_misc/skunklogo_dfx_1.pdf file from the skunkboard full relase
+   archive in Inkscape 0.92.3, using the default import options.
+  -Saved it as an SVG
+  -Opened the SVG, scaled it to about 33%, set the canvas size to the
+   skunkboard board size (94mm x 37.5mm)
+  -Merged the "cut-out" paths (inside of the second 'K', the letters in the
+   circles by selecting them and their containing sections and taking the
+   difference of the two paths (Had to do this in multiple steps for some of
+   the letters in circles).
+  -Opened the board outline, back copper, and top copper layer PNGs, each in
+   its own layer, and manually aligned them within the canvas.
+  -Manually aligned the board outline PNG by lining up the center of the top/
+   bottom/side edges with the canvas outline in Inkscape while zoomed way in.
+  -Manually traced a path around the center of the board outline in the PNG,
+   removed the bitmap outline.  Then converted each of the copper layers to a
+   path by using "Path->Trace bitmap" with default settings.
+  -Lowered the opacity of all the non-logo layers.
+  -Flipped the three objects created from PNGs horizontally (Looking at back
+   of board here).
+  -Manually aligned the copper layers by measuring the distances from the
+   board edges to key traces in a gerber viewer looking at the actual gerber
+   files, and then duplicating those offsets in Inkscape.
+  -Manually perspective-correct scaled and placed the skunk logo by comparing
+   it with a reference Rev. 4 skunkboard PCB, using landmarks such as vias on
+   the copper layers as references.
+  -Placed some rectangles near the left and right edges of the board, and in
+   between the top of the alignment finger cutout in an "edge markers" layer
+   for use when verifying alignment during the gerber conversion step.
+  -Made edits to customize the logo and place various other info on the back
+   silkscreen for Rev. 5.
+ -Workflow used to convert the SVG to a Gerber file:
+  -Install Cenon (cenon.app on Ubuntu)
+  -Make a copy of back_silk.svg and open it in Inkscape
+  -Delete all layers except "background" and "back silk".
+   -Leave "edge markers" too if you want to do a trial run and verify
+    alignment in a gerber viewer.
+  -Edit->"Select all in all layers"
+  -Object->"Flip horizontal"
+  -Delete the "background" layer.
+  -Save the file and open it in Cenon
+  -Edit->"Select all"
+  -Tools->"Transform Panel" and select "Move"
+  -Select "Move Relative" and move X: -15.95, Y -9.9
+   -Note: Exact value would be -10, -16.0198 to be exact, as Cenon for some
+    reason offsets everything by 10 in its canvas, and the origin of the
+    skunkboard layout is offset in the X direction by 237mils, at the bottom-
+    left edge of the connector finger. However, my manual alignments in
+    Inkscape are probably off by just a bit. Perhaps I will attempt to re-
+    align now that I've worked this out.
+   -This move will probably make things look funky in Cenon, since it puts
+    objects at negative coordinates, and Cenon just "wraps" them around on
+    the canvas. Don't worry about it, the generated gerber code comes out
+    looking fine.
+  -File->"Save as", and save it as a gerber file.
+  -Copy this gerber file over the one output by FreePCB for the back silk
+   screen layer, and take a look at it in a gerber viewer to verify your
+   results.
  
--Prototype on Rev. 4 PCB:
+-Notes on wiring for Prototype on Rev. 4 PCB:
  -Green ========= Cypress EZHost pin 45, GPIO25, 74LVC2G08 pin 1, 1A
  -Yellow ======== Cypress EZHost pin 42, GPIO28, 74LVC2G08 pin 5, 2A
  -White ========= Jaguar pin B43, GPIO1/SF_CS, 74LVC2G08 pins 2/6, 1B/2B

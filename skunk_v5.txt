@@ -18,6 +18,8 @@
  -Enlarged Mini USB mounting pads to make them more secure
  -Moved version info silkscreen over to left edge of board, updated to
   Rev. 5, thanked Tursi.
+ -Labeled JTAG pins on back silkscreen using Inkscape, FreeSans font in bold
+  at 4pt.
 
 -Additional layout modifications:
   -Flipped C1 horizontally to make room for vias to route GPIO lines on back
@@ -37,6 +39,9 @@
    these pins are not connected, so there will be no change in behavior.
   -Added U7, pads for a tiny XSON8 dual AND gate IC which will assist the
    GPIO lines in selecting between the two Serial EEPROM save-game chips.
+  -Added public-domain 2020 copyright line on back silkscreen.
+  -Added an "SE (special edition)" to the skunk logo on the back silkscreen.
+  -Added edge connector pin labels to the back silkscreen.
 
 -Don't put traces too close to USB traces: See notes in
  pcb3/pcb/usbhub-layout.pdf for details.  These traces prefer privacy.
@@ -45,17 +50,8 @@
  how it allows proper booting.
 
 -TODO:
- -Silkscreen:
-  -Bottom
-   -Difficult, in that it isn't done in FreePCB, since it does not support
-    importing/drawing real graphics. The previous manufacturing releases
-    appear to have used an autocad file converted directly to gerber format.
-   -Want to add a few things to the existing one, so I can't directly re-use
-    the Rev. 3 files:
-    -Add a "CE (collectors edition)" to the logo somewhere.
-    -Add the JTAG pin labels from Rev. 4 (were very helpful)
-    -Potentially label Jaguar connector pin numbers like on front of Rev. 4.
-    -Add public-domain 2020 copyright line
+ -Manually carve out soldermask around pads of parts with 0.2mm space between
+  pads (U1, U2, U3, U4, U7), then lower soldermask pad swell to 3mil.
  -Triple-check Serial EEPROM pin->Jaguar pin mapping
  -Triple-check EZHost GPIO routing.
 
@@ -94,11 +90,16 @@
   thing to do would probably be to just order green boards.  Oshpark only
   supports the purple ones though, so I guess we can just get some prototypes
   made without solder bridge between the fine-pitch parts and see how it
-  goes soldering them. I can't tell for sure whether the Rev. 4 boards had
-  mask betwen the pins as I've burnt mine up pretty bad.
+  goes soldering them.
+ -The Rev. 4 boards didn't have soldermask between any of the 0.5mm pin-pitch
+  parts, nor even betweeen the mini USB connector pins, which have 0.3mm of
+  space between them, and I managed (with much trouble) to hand-solder those.
+ -To take advantage of 3mil/0.075mm mask tolerances, should manually carve
+  out regions from solder-mask around 0.5mm pin pitch parts (U1, U2, U3, U4,
+  U7), and set soldermask pad swell in FreePCB to 3mils.
 
 -Back silkscreen workflow:
- -Original board back silk screen appears to have been manually generated
+ -Original board back silkscreen appears to have been manually generated
   from a PDF->DFX->gerber conversion process, using an evaluation copy of
    Fab It! 2008 Version 3.4.8 from Numerical Innovations. I preferred to
    use freely available tools if possible, so I used an alternate method.
@@ -160,6 +161,15 @@
   -Copy this gerber file over the one output by FreePCB for the back silk
    screen layer, and take a look at it in a gerber viewer to verify your
    results.
+  -XXX This worked before I sliced up the skunk logo to add the JTAG lables,
+   the public domain copyright, and the edge connector labels, but fails with
+   the more complex final back_silk.svg! Tried both with SVG and PDF import
+   in Cenon
+  -XXX Also tried reaConverter, no go. Also, no way to align things properly
+   in here AFAICT.
+  -XXX Tried svg2gerber (https://github.com/iliis/svg2gerber), but it failed
+   even on the simpler version of the silkscreen.
+  -XXX May need to try Fab It! after all and hope it can handle the task.
  
 -Notes on wiring for Prototype on Rev. 4 PCB:
  -Green ========= Cypress EZHost pin 45, GPIO25, 74LVC2G08 pin 1, 1A

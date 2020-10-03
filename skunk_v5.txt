@@ -213,8 +213,8 @@
    -Gerber options: "Unselect everything except "Use extended X2 format",
     set "Coordinate format" to "4.6, unit mm"
   -Plot
-  -Copy <your_kicad_project_dir>/gerbers/back_silk_tmp-B_SilkS.gbr to your
-   board CAM files directory, overwriting bottom_silk.grb.
+  -Copy <your_kicad_project_dir>/gerbers/<your tmp SVG filename>-B_SilkS.gbr
+   to your board CAM files directory, overwriting bottom_silk.grb.
   -Look at it in a gerber viewer along with the other board layers to verify
    results/alignment.
 
@@ -224,6 +224,10 @@
  -Copy & modify the manufacturing readme.txt from the old releases as
   necessary for the new gerber zip file.
  -Review board in Gerber viewer one last time.
+ -Double-check soldermask settings on U4 thermal pad. Doesn't seem to be
+  getting any expansion in gerber viewer.
+ -Double-check keep-outs don't overlap where not appropriate near U5 and
+  U6.
  
 -Notes on wiring for Prototype on Rev. 4 PCB:
  -Green ========= Cypress EZHost pin 45, GPIO25, 74LVC2G08 pin 1, 1A

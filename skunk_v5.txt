@@ -17,7 +17,7 @@
   clock, and data in+out lines.
  -Enlarged Mini USB mounting pads to make them more secure
  -Moved version info silkscreen over to left edge of board, updated to
-  Rev. 5, thanked Tursi.
+  Rev. 5, thanked Tursi, et al. on the back silkscreen instead of the front.
  -Labeled JTAG pins on back silkscreen using Inkscape, FreeSans font in bold
   at 4pt.
 
@@ -42,18 +42,23 @@
   -Added public-domain 2020 copyright line on back silkscreen.
   -Added an "SE (special edition)" to the skunk logo on the back silkscreen.
   -Added edge connector pin labels to the back silkscreen.
+ -Manually carved out soldermask around pads of parts with <0.3mm space
+  between pads (U1, U2, U3, U4, U7), lowered soldermask pad swell to 3mil,
+  per soldermask manufacturing limits research detailed below.
 
 -Don't put traces too close to USB traces: See notes in
- pcb3/pcb/usbhub-layout.pdf for details.  These traces prefer privacy.
+ pcb3/pcb/usbhub-layout.pdf for details. These traces prefer privacy. Note
+ the GPIO25/GPIO28 vias are closer to the J1 USB signal traces than I would
+ like, but there's really no avoiding it. The board is very crowded here. In
+ theory, smaller vias could be used, as was done when routing the serial
+ EEPROM edge connector pins, but I tried to avoid relying on that too much.
+ Best not to push manufacturing capabilities to the limit if you want to go
+ with the cheap manufacturers. The smaller vias push the board into most
+ manufacturers' "advanced" category as it is.
 
--See butcher/butcher.txt for details on the weird GPIO routing on EZHost and
- how it allows proper booting.
-
--TODO:
- -Manually carve out soldermask around pads of parts with 0.2mm space between
-  pads (U1, U2, U3, U4, U7), then lower soldermask pad swell to 3mil.
- -Triple-check Serial EEPROM pin->Jaguar pin mapping
- -Triple-check EZHost GPIO routing.
+-See butcher/butcher.txt for details on the weird GPIO routing on EZHost top
+ edge (looking at it in the orientation it is in on the PCB) and how it
+ allows proper booting.
 
 -Soldermask minimum web (clearance between pads to allow mask between them):
  -The minimum pad spacing on the board is 0.2mm (~7.874mil). If the minimum
@@ -134,7 +139,7 @@
    for use when verifying alignment during the gerber conversion step.
   -Made edits to customize the logo and place various other info on the back
    silkscreen for Rev. 5.
- -Workflow used to convert the SVG to a Gerber file:
+ -Workflow used to convert the SVG to a Gerber file in Cenon (FAILED!)
   -Install Cenon (cenon.app on Ubuntu)
   -Make a copy of back_silk.svg and open it in Inkscape
   -Delete all layers except "background" and "back silk".
@@ -169,7 +174,56 @@
    in here AFAICT.
   -XXX Tried svg2gerber (https://github.com/iliis/svg2gerber), but it failed
    even on the simpler version of the silkscreen.
-  -XXX May need to try Fab It! after all and hope it can handle the task.
+ -Workflow used to convert the SVG to a Gerber file using svg2shenzen/KiCad:
+  -Upgraded to Inkscape 1.0
+  -Installed the svg2shenzen extension version 0.2.18.7
+   (https://github.com/badgeek/svg2shenzhen)
+  -Make a copy of back_silk.svg and open it in Inkscape
+  -Delete all layers except "background" and "back silk".
+   -Leave "edge markers" too if you want to do a trial run and verify
+    alignment in a gerber viewer.
+  -Edit->"Select all in all layers"
+  -Object->"Flip horizontal"
+  -Delete the "background" layer.
+  -Extensions->Svg2Shenzen->Prepare Document
+   -Document width: 94
+   -Document height: 37.5
+   -Select layers to use: "B.SilkS"
+   -Other: <Nothing should be checked here>
+  -Apply, Close
+  -Make the new "[fixed] BG" layer non-visible so you can see the content
+   again, and Edit->"Select all" if it isn't selected anymore
+  -Set fill to black.
+  -Right-click on the selected content, "Move to layer"
+   -Select the new B.SilkS layer
+  -Make the "[fixed] BG" layer visible again
+  -Extensions->Svg2Shenzen->"Export to KiCad"
+   -Export as: Project
+   -Threshold: 1
+   -Export DPI: 1200
+  -Open the exported project in KiCad (If you didn't have the extension do it
+   for you).
+  -Click on the logo to select it.
+  -Right-click and select "Move Exactly" or press Ctrl-M
+   -X: 41.15
+   -Y: -18.75
+  -File->"Plot"
+  -Uncheck every layer except "B.SilkS"
+   -General options: Unselect everything except "Check zone fills before..."
+   -Gerber options: "Unselect everything except "Use extended X2 format",
+    set "Coordinate format" to "4.6, unit mm"
+  -Plot
+  -Copy <your_kicad_project_dir>/gerbers/back_silk_tmp-B_SilkS.gbr to your
+   board CAM files directory, overwriting bottom_silk.grb.
+  -Look at it in a gerber viewer along with the other board layers to verify
+   results/alignment.
+
+-Final design checklist:
+ -Triple-check Serial EEPROM pin->Jaguar pin mapping -- DONE!
+ -Triple-check EZHost GPIO routing -- DONE!
+ -Copy & modify the manufacturing readme.txt from the old releases as
+  necessary for the new gerber zip file.
+ -Review board in Gerber viewer one last time.
  
 -Notes on wiring for Prototype on Rev. 4 PCB:
  -Green ========= Cypress EZHost pin 45, GPIO25, 74LVC2G08 pin 1, 1A

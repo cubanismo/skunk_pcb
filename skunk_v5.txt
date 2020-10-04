@@ -174,6 +174,35 @@
    in here AFAICT.
   -XXX Tried svg2gerber (https://github.com/iliis/svg2gerber), but it failed
    even on the simpler version of the silkscreen.
+ -Workflow used to convert the SVG to a Gerber file using FAB 3000 (FAILED!):
+  -Got a trial license to FAB 3000 V8
+   (https://www.numericalinnovations.com/collections/fab-3000-gerber-cam)
+   and installed it. Looks like I got version 8.1.41
+  -Import Postscript/PDF with a PDF exported from Inkscape. Tweak some of the
+   postscript/PDF import options after selecting the file:
+   -Page Numbers to convert: 1
+   -Spline/Arc Deviation (mil): 0.5
+   -Map Layers: Merge All to a Single Layer
+   -Convert Paths to: Auto-Detect
+   -Fill Area Mode: Treat White Areas as Holes (DeEmbed)
+   -Flash Round Shapes <unchecked>
+   -Flash Rectangle Shapes <unchecked>
+   -Text Output: Polygon
+   -Default FAB 3000 font: arial.fnt
+   -Additional GhostScript Option: <blank/none>
+  -Need to move things to align with skunk's left-of-origin regions:
+   -Edit->Selection->"All"
+   -Make sure the unit dialog in bottom-right says "millimeter"
+   -Edit->"Move"
+   -Need to go type in the command window now:
+    -Basepoint: 0, 0 <enter>
+    -Second point of displacement: -5.9, 0.1 <enter>
+    -Second point of displacement: <enter>
+   -Edit->Selection->"Clear All"
+  -Then just export to gerber, all default options work fine.
+  -XXX This looks OK in the ucamco reference gerber viewer
+   (https://gerber-viewer.ucamco.com), but displays errors/warnings about
+   self-intersecting contours, and looks very wrong in the PCBWay PCB viewer.
  -Workflow used to convert the SVG to a Gerber file using svg2shenzen/KiCad:
   -Upgraded to Inkscape 1.0
   -Installed the svg2shenzen extension version 0.2.18.7
@@ -225,9 +254,15 @@
   necessary for the new gerber zip file.
  -Review board in Gerber viewer one last time.
  -Double-check soldermask settings on U4 thermal pad. Doesn't seem to be
-  getting any expansion in gerber viewer.
+  getting any expansion in gerber viewer. -- DONE!
+  -This is because the pad itself sits on a larger copper area serving as a
+   heatsink, so the expansion just doesn't look the same, since it is copper
+   showing through everywhere, rather than copper with some bare board next
+   to it like all the other pads on the board.
  -Double-check keep-outs don't overlap where not appropriate near U5 and
-  U6.
+  U6. -- DONE!
+  -Not enough sleep. The idea that this would be a problem doesn't actually
+   make sense.
  
 -Notes on wiring for Prototype on Rev. 4 PCB:
  -Green ========= Cypress EZHost pin 45, GPIO25, 74LVC2G08 pin 1, 1A

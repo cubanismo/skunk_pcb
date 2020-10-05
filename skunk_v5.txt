@@ -252,7 +252,7 @@
  -Triple-check EZHost GPIO routing -- DONE!
  -Copy & modify the manufacturing readme.txt from the old releases as
   necessary for the new gerber zip file.
- -Review board in Gerber viewer one last time.
+ -Review board in Gerber viewer one last time. -- DONE!
  -Double-check soldermask settings on U4 thermal pad. Doesn't seem to be
   getting any expansion in gerber viewer. -- DONE!
   -This is because the pad itself sits on a larger copper area serving as a

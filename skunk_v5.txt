@@ -174,12 +174,15 @@
    in here AFAICT.
   -XXX Tried svg2gerber (https://github.com/iliis/svg2gerber), but it failed
    even on the simpler version of the silkscreen.
- -Workflow used to convert the SVG to a Gerber file using FAB 3000 (FAILED!):
+ -Workflow used to convert the SVG to a Gerber file using FAB 3000:
   -Got a trial license to FAB 3000 V8
    (https://www.numericalinnovations.com/collections/fab-3000-gerber-cam)
-   and installed it. Looks like I got version 8.1.41
-  -Import Postscript/PDF with a PDF exported from Inkscape. Tweak some of the
-   postscript/PDF import options after selecting the file:
+   and installed it. Looks like I got version 8.1.41. They generously allowed
+   me an entire 5 days to evaluate the software, and it took 4 to get
+   something working out of it. :-\
+  -Import Postscript/PDF with a PDF (v1.4) exported from back_silk_v5.svg
+   using Inkscape 1.0. Tweak some of the postscript/PDF import options after
+   selecting the file:
    -Page Numbers to convert: 1
    -Spline/Arc Deviation (mil): 0.5
    -Map Layers: Merge All to a Single Layer
@@ -190,19 +193,44 @@
    -Text Output: Polygon
    -Default FAB 3000 font: arial.fnt
    -Additional GhostScript Option: <blank/none>
+  -Odd issue with the public-domain copyright symbol: The crossing-bar that
+   makes it a public domain rather than copyright symbol is drawn as a cut-
+   out rather than a fill. To fix, select it, right-click->"Properties" and
+   change "Composite Level" to "4: Dark"
+   Tools->Polygon Utilities->"Fix Invalid Polygons"
+  -Cut the file size down a bit:
+   -Edit->Selection->"All"
+   -Tools->Polygon Utilities->"Remove Tiny Segments"
+    -Set "Min. Segment Length (mm)" 0.01
+    -OK
   -Need to move things to align with skunk's left-of-origin regions:
    -Edit->Selection->"All"
    -Make sure the unit dialog in bottom-right says "millimeter"
    -Edit->"Move"
    -Need to go type in the command window now:
     -Basepoint: 0, 0 <enter>
-    -Second point of displacement: -5.9, 0.1 <enter>
+    -Second point of displacement: -5.85, 0.0 <enter>
     -Second point of displacement: <enter>
    -Edit->Selection->"Clear All"
-  -Then just export to gerber, all default options work fine.
-  -XXX This looks OK in the ucamco reference gerber viewer
-   (https://gerber-viewer.ucamco.com), but displays errors/warnings about
-   self-intersecting contours, and looks very wrong in the PCBWay PCB viewer.
+  -Then just export to gerber with these options:
+   -Format: RS-274-X
+   -Units: Metric
+   -Integer Digits: 3
+   -Decimal Digits: 5
+   -Type: Absolute
+   -Zero Supression: Leading
+   -Use Step/Repeat (when possible): <unchecked>
+   -Optimize/Fix Polygons: <checked!>
+   -Export Arcs: <unchecked>
+   -Gerber File Extension: gbr
+  -This looks good in the ucamco reference gerber viewer
+   (https://gerber-viewer.ucamco.com), but warns that it needed to auto-close
+   a region. Also looks OK in GerbView, Gerbv, OSH PARK preview, and the
+   "layers" view of the PCBWay gerber viewer, but not the "back" view for
+   some reason. It looks like it's probably right in the jlcpcb order
+   preview, but totally wrong in their gerber viewer. Compared to the
+   svg2shenzen+KiCad method, this version looks much sharper/more accurate
+   when zoomed way in, and pretty close to the same at 100% zoom.
  -Workflow used to convert the SVG to a Gerber file using svg2shenzen/KiCad:
   -Upgraded to Inkscape 1.0
   -Installed the svg2shenzen extension version 0.2.18.7
@@ -246,12 +274,19 @@
    to your board CAM files directory, overwriting bottom_silk.grb.
   -Look at it in a gerber viewer along with the other board layers to verify
    results/alignment.
+ -Conclusions: Used the svg2shenzen method for the Osh Park prototype build,
+  since it looked pretty good and I didn't have the FAB 3000 workflow working
+  yet. Will re-evaluate based on how that turns out: If it looks pretty good,
+  I'll stick with it since I prefer the "free" workflow. If it looks bloated
+  or messy like it does when zoomed in in some of the gerber viewers, I'll
+  probably switch to the FAB 3000 version for the "production" board run and
+  hope it comes out better.
 
 -Final design checklist:
  -Triple-check Serial EEPROM pin->Jaguar pin mapping -- DONE!
  -Triple-check EZHost GPIO routing -- DONE!
  -Copy & modify the manufacturing readme.txt from the old releases as
-  necessary for the new gerber zip file.
+  necessary for the new gerber zip file. -- DONE!
  -Review board in Gerber viewer one last time. -- DONE!
  -Double-check soldermask settings on U4 thermal pad. Doesn't seem to be
   getting any expansion in gerber viewer. -- DONE!

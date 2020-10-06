@@ -1,0 +1,110 @@
+FreePCB project report (default units = MIL)
+============================================
+Project name: jagwave
+Project file: Z:\home\jjones\skunkboard\pcb\skunkboard.fpc
+Default library folder: z:\home\jjones\skunkboard\pcb\lib
+
+Board statistics
+==============
+Number of copper layers: 4
+Number of board outlines: 1
+Board outline(s) extent: X = 3702 MIL; Y = 1476.378 MIL
+Number of parts: 39
+Number of pins: 425 (20 through-hole, 405 SMT)
+Number of vias: 141
+Number of holes: 161
+
+Drill list
+==========
+NUMBER  DIAMETER
+------  --------
+    2   90 MIL
+  137   20 MIL
+    4   10 MIL
+    4   90.6 MIL
+   14   39 MIL
+
+Part list
+=========
+For parts on top: the angle is in degrees CCW, as viewed from the top
+For parts on the bottom: the angle is in degrees CCW, as viewed from the bottom by flipping the PCB left-right
+All centroid coordinates are as viewed from the top
+
+REF  PACKAGE  VALUE      FOOTPRINT  PINS  HOLES    SIDE  ANGLE  CENT X  CENT Y  PIN1 X  PIN1 Y  GLUE W  GLUE X  GLUE Y
+---  -------  -----      ---------  ----  -----    ----  -----  ------  ------  ------  ------  ------  ------  ------
+ C1                          C0603     2      0     top    180  2513.8  1200.8  2480.3  1200.8      25  2513.8  1200.8
+C10                          C0603     2      0     top    180  1112.2   866.1  1078.7   866.1      25  1112.2   866.1
+C11                          C0603     2      0     top    180  1112.2   692.9  1078.7   692.9      25  1112.2   692.9
+C12                          C0603     2      0     top    180   419.3  1035.4   385.8  1035.4      25   419.3  1035.4
+C13                          C0603     2      0     top    180   419.3  1141.7   385.8  1141.7      25   419.3  1141.7
+C14                          C0805     2      0     top     90   102.4   635.8   102.4   598.4      25   102.4   635.8
+C15                         TANT_A     2      0     top    180   629.9   984.3   578.7   984.3      25   629.9   984.3
+C16                         TANT_A     2      0     top    180  2299.2   409.4    2248   409.4      25  2299.2   409.4
+C17                         F55CAP     2      0     top    270  1047.2  1212.6   950.8  1212.6      25  1047.2  1212.6
+C18                          C0603     2      0     top    180  2883.9   732.3  2850.4   732.3      25  2883.9   732.3
+C19                          C0603     2      0     top    180  2883.9   606.3  2850.4   606.3      25  2883.9   606.3
+ C2                          C0603     2      0     top    180  2883.9   964.6  2850.4   964.6      25  2883.9   964.6
+C20                          C0805     2      0     top    270  1275.6  1309.1  1275.6  1346.5      25  1275.6  1309.1
+ C3                          C0603     2      0     top    180  2883.9   858.3  2850.4   858.3      25  2883.9   858.3
+ C4                          C0603     2      0     top    180  2529.5   417.3  2496.1   417.3      25  2529.5   417.3
+ C5                          C0603     2      0     top    180  2033.5   795.3    2000   795.3      25  2033.5   795.3
+ C6                          C0603     2      0     top    180    1624  1070.9  1590.6  1070.9      25    1624  1070.9
+ C7                          C0603     2      0     top    180  1954.7   629.9  1921.3   629.9      25  1954.7   629.9
+ C8                          C0603     2      0     top    180  1537.4   433.1  1503.9   433.1      25  1537.4   433.1
+ C9                          C0603     2      0     top    180  1261.8   842.5  1228.3   842.5      25  1261.8   842.5
+ J0                             J0   104      0  bottom      0  1613.7   197.3    50.2   228.3      25  1613.7   197.3
+ J1                           USBA     6      6     top      0     374  1330.9   511.8  1259.8
+ J2                           USBA     6      6     top      0  2854.3  1330.9  2992.1  1259.8
+ J3                        USBMINI     7      0     top      0  1614.2  1309.1  1677.2  1230.3      25  1614.2  1309.1
+ J4                     6X1HDR-100     6      6     top      0  2183.1  1338.6  2433.1  1338.6
+ L1                          C0805     2      0     top    270   803.1  1253.9   803.1  1291.3      25   803.1  1253.9
+ M1                  HOLE_90_NOPAD     1      1     top    180   118.1  1133.9   118.1  1133.9
+ M2                  HOLE_90_NOPAD     1      1     top    180  3110.2  1133.9  3110.2  1133.9
+ R1                          C0603     2      0     top    180  2883.9  1078.7  2850.4  1078.7      25  2883.9  1078.7
+ R2                          C0603     2      0     top     90   236.2  1104.3   236.2  1070.9      25   236.2  1104.3
+TP1                      TestPoint     1      0     top    180   291.3    1000   291.3    1000      25   291.3    1000
+ U1                        TSOP100   100      0     top     90  2456.7   807.1  2759.8   570.9      25  2456.7   807.1
+ U2                          VQ-64    64      0     top     90  1612.2   757.9  1836.6   610.2      25  1612.2   757.9
+ U3                         TSOP48    48      0     top    270   596.5   679.1   204.7   905.5      25   596.5   679.1
+ U4                          MSOP8     9      0     top    270     622  1111.2   535.4  1149.6      25     622  1111.2
+ U5                            S08     8      0     top    180  3338.8   527.6  3263.8   429.1      25  3338.8   527.6
+ U6                            S08     8      0     top    180  3338.8     874  3263.8   775.6      25  3338.8     874
+ U7                          XSON8     8      0     top      0  3318.9  1141.7  3348.4  1165.4      25  3318.9  1141.7
+ X1                       CSM-7-DN     2      0     top      0  3070.9   714.6  3070.9   881.9      25  3070.9   714.6
+
+Gerber file settings
+====================
+Include board outline: NO
+Include moires: NO
+Include layer description text: NO
+Include pilot holes: NO
+Connect SMT pins to copper areas: NO
+Use thermals for SMT pins: YES
+Use thermals for through-hole pins: YES
+Use thermals for vias: NO
+Make solder-mask cutouts for vias: YES
+Use 90-degree thermals for round pins: YES
+Copper to copper-fill clearance: 10 MIL
+Hole-edge to copper-fill clearance: 17.5 MIL
+Solder mask clearance: 3 MIL
+Pilot hole diameter: 10 MIL
+Minimum silkscreen line width: 6 MIL
+Thermal relief line width: 12 MIL
+Board outline line width: 5 MIL
+Minimum annular ring width (pins): 7 MIL
+Minimum annular ring width (vias): 7 MIL
+Amount to shrink SMT pads for paste mask: 0 MIL
+
+DRC settings
+============
+Minimum trace width: 7.9 MIL
+Minimum pad to pad clearance: 7.9 MIL
+Minimum pad to trace clearance: 7.9 MIL
+Minimum trace to trace clearance: 7.9 MIL
+Minimum hole to copper clearance: 16 MIL
+Minimum hole to hole clearance: 25 MIL
+Minimum annular ring (pins): 7 MIL
+Minimum annular ring (vias): 7 MIL
+Minimum board edge to copper clearance: 23 MIL
+Minimum board edge to hole clearance: 23 MIL
+Minimum copper area to copper area clearance: 10 MIL

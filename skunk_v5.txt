@@ -82,7 +82,9 @@
   covers the 0.3mm space between the USB mini connector pads as well.
  -allpcb claims the industry standard is ~4mil (~0.102mm) to account for
   growth, retraction and shift.
- -Osh Park claims a maximum of 3mil (0.077mm)
+ -Osh Park claims a maximum of 3mil (0.077mm) XXX This is actually 1.5mil in
+  each direction, per here:
+    https://docs.oshpark.com/tips+tricks/stop-mask-expansion/
  -PCBWay doesn't list a number here, but a blog from 2014 says, for SMD pads,
   0.05mm (~2mil) is good, 0.075mm (~3mil) is better. The same blog claims a
   minimum web of 0.15mm (~6mil): 0.05 * 2 + 0.15mm = 0.25mm pad spacing.
@@ -102,6 +104,15 @@
  -To take advantage of 3mil/0.075mm mask tolerances, should manually carve
   out regions from solder-mask around 0.5mm pin pitch parts (U1, U2, U3, U4,
   U7), and set soldermask pad swell in FreePCB to 3mils.
+ -XXX Incorrect, as noted above, OSH PARK could support mask between 0.2mm-
+  spaced pads (1.5mil + 1.5mil + 4mil = 7mils ~= .1778mm), and PCBWay's
+  "advanced PCB" probably could too (Claims 8mil is minimum spacing between
+  pads to get a soldermask bridge, 8mil ~= 0.2032mm, probably rounds close
+  enough to 0.2mm).
+ -If soldering the OSH boards proves cumbersome, perhaps try again with the
+  mask cut-outs removed and see if it makes it significantly easier, then
+  attempt at PCBWay or elsewhere as well, perhaps asking them about this
+  specifically first.
 
 -Back silkscreen workflow:
  -Original board back silkscreen appears to have been manually generated
@@ -114,6 +125,8 @@
   -Saved it as an SVG
   -Opened the SVG, scaled it to about 33%, set the canvas size to the
    skunkboard board size (94mm x 37.5mm)
+  -Deleted many overlapping/redundant paths.
+  -Set all strokes to none/size 0.
   -Merged the "cut-out" paths (inside of the second 'K', the letters in the
    circles by selecting them and their containing sections and taking the
    difference of the two paths (Had to do this in multiple steps for some of

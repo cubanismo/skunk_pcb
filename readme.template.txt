@@ -30,7 +30,7 @@ Table of Contents:
 	Min copper line/space:	0.2mm/0.2mm	(7.875mil)
 	Min copper thickness:	0.5 ounce outer layers, 1 ounce inner layers
 
-	Finished hole sizes:	0.020", 0.039", 0.090", .0906"
+	Finished hole sizes:	0.010", 0.020", 0.039", 0.090", .0906"
 
         Total hole count:	161
 
@@ -43,5 +43,5 @@ Table of Contents:
 
 	Finger size:		82mm x 7.62mm / 624mm^2 (3.228" x 0.3" / 0.9684 in^2)
 
-	Finger finish:		Hard Gold with 30 degree bevel
+	Finger finish:		Hard Gold (30u") with 30 degree bevel
 				NOTE:  DO NOT USE TIE-BAR EDGE PLATING

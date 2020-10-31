@@ -12,6 +12,7 @@ Table of Contents:
 	skunk_v%REVISION%.%TOP_COPPER_EXT% - Gerber/RS274X format top copper layer (component side/layer 1)
 	skunk_v%REVISION%.%TOP_SILK_EXT% - Gerber/RS274X format top silk screen (component side)
 	skunk_v%REVISION%.%TOP_SOLDER_EXT% - Gerber/RS274X format top solder mask (component side)
+	skunk_v%REVISION%.%TOP_PASTE_EXT% - Gerber/RS274X format top solder paste (component side)
 
 	skunk_v%REVISION%.%INNER_1_EXT% - Gerber/RS274X format inner layer 1 (GND/layer 2)
 	skunk_v%REVISION%.%INNER_2_EXT% - Gerber/RS274X format inner layer 2 (VCC/layer 3)
@@ -32,7 +33,7 @@ Table of Contents:
 
 	Finished hole sizes:	0.010", 0.020", 0.039", 0.090", .0906"
 
-        Total hole count:	161
+        Total hole count:	163
 
 	Board stack-up:		4 layer, .062" thick, standard construction
 

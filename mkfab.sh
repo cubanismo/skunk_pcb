@@ -12,6 +12,7 @@ INNER_2_EXT=in2
 INNER_1_EXT=in1
 TOP_COPPER_EXT=top
 TOP_SOLDER_EXT=smt
+TOP_PASTE_EXT=spt
 TOP_SILK_EXT=sst
 DRILL_EXT=tap
 BOARD_OUTLINE_EXT=fab
@@ -28,6 +29,7 @@ while [ $# -gt 0 ]; do
 		INNER_1_EXT=g2l
 		TOP_COPPER_EXT=gtl
 		TOP_SOLDER_EXT=gts
+		TOP_PASTE_EXT=gtp
 		TOP_SILK_EXT=gto
 		DRILL_EXT=xln
 		BOARD_OUTLINE_EXT=gko
@@ -40,6 +42,7 @@ while [ $# -gt 0 ]; do
 		INNER_1_EXT=g1
 		TOP_COPPER_EXT=gtl
 		TOP_SOLDER_EXT=gts
+		TOP_PASTE_EXT=gtp
 		TOP_SILK_EXT=gto
 		DRILL_EXT=txt
 		BOARD_OUTLINE_EXT=gml
@@ -71,6 +74,7 @@ sed -e "s/%REVISION%/$REVISION/" \
 	-e "s/%INNER_1_EXT%/$INNER_1_EXT/" \
 	-e "s/%TOP_COPPER_EXT%/$TOP_COPPER_EXT/" \
 	-e "s/%TOP_SOLDER_EXT%/$TOP_SOLDER_EXT/" \
+	-e "s/%TOP_PASTE_EXT%/$TOP_SOLDER_EXT/" \
 	-e "s/%TOP_SILK_EXT%/$TOP_SILK_EXT/" \
 	-e "s/%DRILL_EXT%/$DRILL_EXT/" \
 	-e "s/%BOARD_OUTLINE_EXT%/$BOARD_OUTLINE_EXT/" \
@@ -83,6 +87,7 @@ cp ../CAM/inner_copper_2.grb skunk_v$REVISION.$INNER_2_EXT
 cp ../CAM/inner_copper_1.grb skunk_v$REVISION.$INNER_1_EXT
 cp ../CAM/top_copper.grb skunk_v$REVISION.$TOP_COPPER_EXT
 cp ../CAM/top_solder_mask.grb skunk_v$REVISION.$TOP_SOLDER_EXT
+cp ../CAM/top_paste_mask.grb skunk_v$REVISION.$TOP_PASTE_EXT
 cp ../CAM/top_silk.grb skunk_v$REVISION.$TOP_SILK_EXT
 cp ../CAM/drill_file.drl skunk_v$REVISION.$DRILL_EXT
 cp ../CAM/board_outline.grb skunk_v$REVISION.$BOARD_OUTLINE_EXT
@@ -94,6 +99,7 @@ zip skunk_v$REVISION.zip skunk_v$REVISION.$INNER_2_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$INNER_1_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$TOP_COPPER_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$TOP_SOLDER_EXT
+zip skunk_v$REVISION.zip skunk_v$REVISION.$TOP_PASTE_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$TOP_SILK_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$DRILL_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$BOARD_OUTLINE_EXT

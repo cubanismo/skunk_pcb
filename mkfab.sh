@@ -46,6 +46,19 @@ while [ $# -gt 0 ]; do
 		TOP_SILK_EXT=gto
 		DRILL_EXT=txt
 		BOARD_OUTLINE_EXT=gml
+	elif [ x"$1" = x"--kicad" ]; then
+		echo "Using KiCad layer naming scheme"
+		BOTTOM_SILK_EXT=gbo
+		BOTTOM_SOLDER_EXT=gbs
+		BOTTOM_COPPER_EXT=gbl
+		INNER_2_EXT=g2
+		INNER_1_EXT=g1
+		TOP_COPPER_EXT=gtl
+		TOP_SOLDER_EXT=gts
+		TOP_PASTE_EXT=gtp
+		TOP_SILK_EXT=gto
+		DRILL_EXT=drl
+		BOARD_OUTLINE_EXT=gm1
 	elif [ x"$1" = x"--fab3000" ]; then
 		BOTTOM_SILK_SRC=../releases/back_silk_v$REVISION-fab3000.gbr
 	else

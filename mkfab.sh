@@ -87,7 +87,7 @@ sed -e "s/%REVISION%/$REVISION/" \
 	-e "s/%INNER_1_EXT%/$INNER_1_EXT/" \
 	-e "s/%TOP_COPPER_EXT%/$TOP_COPPER_EXT/" \
 	-e "s/%TOP_SOLDER_EXT%/$TOP_SOLDER_EXT/" \
-	-e "s/%TOP_PASTE_EXT%/$TOP_SOLDER_EXT/" \
+	-e "s/%TOP_PASTE_EXT%/$TOP_PASTE_EXT/" \
 	-e "s/%TOP_SILK_EXT%/$TOP_SILK_EXT/" \
 	-e "s/%DRILL_EXT%/$DRILL_EXT/" \
 	-e "s/%BOARD_OUTLINE_EXT%/$BOARD_OUTLINE_EXT/" \
@@ -116,3 +116,4 @@ zip skunk_v$REVISION.zip skunk_v$REVISION.$TOP_PASTE_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$TOP_SILK_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$DRILL_EXT
 zip skunk_v$REVISION.zip skunk_v$REVISION.$BOARD_OUTLINE_EXT
+zip skunk_v$REVISION.zip readme.txt
